@@ -1,0 +1,144 @@
+@import 'breakpoints';
+
+.wrapper {
+  align-self: center;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  display: flex;
+
+  .box {
+    @include media-breakpoint-down-md {
+    }
+    max-width: 100%;
+
+    // width: 95%;
+    // height: calc(100% - 150px);
+    border-radius: 15px;
+    padding: 15px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    color: #fff;
+    // background-color: rgba($color: #000, $alpha: 0.4);
+    // box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    //   rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+
+    // @include media-breakpoint-up-md {
+    //   height: 60%;
+
+    //   max-width: 885px;
+    //   max-height: 560px;
+    // }
+
+    // @include media-breakpoint-up-lg {
+    //   height: 70%;
+    // }
+
+    h1 {
+      font-weight: 800;
+    }
+
+    h2 {
+      @include media-breakpoint-down-md {
+        font-size: 1em;
+      }
+
+      @include media-breakpoint-up-md {
+        font-weight: 600;
+        overflow: hidden;
+        border-right: 0.15em solid #c9357d;
+        white-space: nowrap;
+        margin: 0 auto;
+        letter-spacing: 0.15em;
+        animation: typing 3.7s steps(40, end), blink-caret 0.75s step-end infinite;
+
+        @keyframes typing {
+          from {
+            width: 0;
+          }
+          to {
+            width: 100%;
+          }
+        }
+
+        @keyframes blink-caret {
+          from,
+          to {
+            border-color: transparent;
+          }
+          50% {
+            border-color: #c9357d;
+          }
+        }
+      }
+    }
+
+    .form {
+      po-page-login ::ng-deep {
+        .po-page-login-header,
+        .po-page-background-footer-content,
+        .po-page-background-footer {
+          display: none;
+        }
+
+        .po-page-login-info-icon-container {
+          display: none;
+        }
+
+        po-password,
+        .po-page-login-button {
+          width: 100%;
+        }
+
+        .po-switch-label {
+          color: #fff;
+        }
+
+        .po-page-login-panel-content {
+          padding: 0;
+        }
+        .po-page-login-container {
+          background-color: unset;
+        }
+
+        .po-page-login-register-link {
+          color: #fff;
+          box-shadow: 0 4px 8px 0 rgb(0 0 0 / 15%);
+          background-color: #fff;
+          border: 1px solid #fff;
+          width: 100%;
+          display: block;
+          border-radius: 3px;
+          cursor: pointer;
+          font-family: Roboto-Bold, sans-serif;
+          font-size: 14px;
+          height: 32px;
+          text-align: center;
+          margin: 12px 6px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          @include media-breakpoint-up-md {
+            margin: 12px 8px;
+          }
+
+          @include media-breakpoint-up-xl {
+            height: 44px;
+          }
+
+          .po-font-text-large-bold {
+            color: #1d2426;
+
+            &:hover {
+              text-decoration: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}

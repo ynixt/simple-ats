@@ -1,0 +1,13 @@
+.toolbar-on-video {
+  display: block;
+
+  ::ng-deep .po-toolbar {
+    background-color: unset;
+
+    .po-toolbar-title {
+      color: #fff;
+      font-family: unset;
+      font-weight: 600;
+    }
+  }
+}
