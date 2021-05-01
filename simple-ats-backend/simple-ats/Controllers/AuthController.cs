@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SimpleAts.Rest.Dtos;
 using SimpleAts.Services;
 using System;
@@ -10,6 +11,7 @@ namespace SimpleAts.Controllers
 {
   [ApiController]
   [Route("auth")]
+  [Authorize]
   public class AuthController : Controller
   {
     private AuthService authService;
@@ -21,6 +23,7 @@ namespace SimpleAts.Controllers
 
     [HttpPost]
     [Route("login")]
+    [AllowAnonymous]
     public async Task<ActionResult<UserLoginResponseDto>> Login()
     {
       try
@@ -43,6 +46,14 @@ namespace SimpleAts.Controllers
       }
 
       return Unauthorized();
+    }
+
+
+    [HttpGet]
+    [Route("isLogged")]
+    public ActionResult IsLogged()
+    {
+      return Ok();
     }
   }
 }

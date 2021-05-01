@@ -5,7 +5,7 @@ import { AuthActions } from '../actions';
 export type AuthState = {
   loading: boolean;
   error?: any;
-  user?: User | null;
+  user?: User;
 };
 
 export const initialState: AuthState = {
@@ -34,6 +34,6 @@ const loggedReducer: ActionReducer<AuthState, Action> = createReducer(
   }),
 );
 
-export function reducer(state: AuthState | undefined, action: Action): AuthState {
+export function reducer(state: AuthState, action: Action): AuthState {
   return loggedReducer(state, action);
 }

@@ -17,19 +17,31 @@ export class TokenService {
     localStorage.setItem(this.tokenKey, token);
   }
 
-  public getToken(): string | null {
+  public deleteToken(): void {
+    localStorage.removeItem(this.tokenKey);
+  }
+
+  public getToken(): string {
     return localStorage.getItem(this.tokenKey);
   }
 
-  public getuserFromToken(token: string): User {
-    const jwtHelperService = new JwtHelperService();
+  public getUserFromToken(token: string): User {
+    if (token != null) {
+      const jwtHelperService = new JwtHelperService();
 
-    const decodedToken = jwtHelperService.decodeToken(token);
+      const decodedToken = jwtHelperService.decodeToken(token);
 
-    return {
-      id: decodedToken.nameid,
-      email: decodedToken.unique_name,
-      name: decodedToken.given_name,
-    };
+      return {
+        id: decodedToken.nameid,
+        email: decodedToken.unique_name,
+        name: decodedToken.given_name,
+      };
+    }
+
+    return undefined;
+  }
+
+  public tokenIsSaved(): boolean {
+    return localStorage.getItem(this.tokenKey) != null;
   }
 }

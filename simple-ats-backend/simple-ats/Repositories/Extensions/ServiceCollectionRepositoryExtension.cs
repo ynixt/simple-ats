@@ -8,6 +8,7 @@ namespace SimpleAts.Repositories.Extensions
     public static IServiceCollection AddRepositories(this IServiceCollection services, IConfiguration configuration)
     {
       services.AddScoped<UserRepository>();
+      services.AddScoped<PermissionRepository>();
 
       return services;
     }

@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using System;
 
 namespace SimpleAts.Core.Extensions
 {
@@ -24,7 +25,9 @@ namespace SimpleAts.Core.Extensions
           ValidateIssuerSigningKey = true,
           IssuerSigningKey = new SymmetricSecurityKey(key),
           ValidateIssuer = false,
-          ValidateAudience = false
+          ValidateAudience = false,
+          ValidateLifetime = true,
+          ClockSkew = TimeSpan.Zero
         };
       });
 

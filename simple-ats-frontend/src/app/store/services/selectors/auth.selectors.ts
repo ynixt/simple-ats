@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Store, createSelector, createFeatureSelector } from '@ngrx/store';
 import { filter, take } from 'rxjs/operators';
+import { User } from 'src/app/core/models';
 import { EntityState } from '../../reducers';
 import { AuthState } from '../../reducers/auth.reducer';
 
@@ -20,10 +21,10 @@ export class AuthSelectors {
   state$ = this.store.select(getAuthState);
   error$ = this.store.select(getAuthError);
 
-  public nextIsLoggedWithLoadingFalse(): Promise<boolean> {
+  public nextIsLogged(): Promise<boolean> {
     return new Promise<boolean>(resolve => {
       this.state$
-        .pipe(filter(state => state.loading === false))
+        .pipe(filter(state => state.user || state.error))
         .pipe(take(1))
         .subscribe(state => {
           resolve(state.user != null);
