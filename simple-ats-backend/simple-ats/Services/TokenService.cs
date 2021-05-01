@@ -21,14 +21,17 @@ namespace SimpleAts.Services
     {
       var tokenHandler = new JwtSecurityTokenHandler();
       var key = Encoding.ASCII.GetBytes(configuration.GetValue<string>("secret"));
+      var expirationDateTime = DateTime.UtcNow.AddHours(2);
+
       var tokenDescriptor = new SecurityTokenDescriptor
       {
         Subject = new ClaimsIdentity(new Claim[]
         {
+          new(ClaimTypes.NameIdentifier, user.Id.ToString()),
           new(ClaimTypes.Name, user.Email),
-          new(ClaimTypes.Role, user.RoleId.ToString())
+          new(ClaimTypes.GivenName, user.Name)
         }),
-        Expires = DateTime.UtcNow.AddHours(2),
+        Expires = expirationDateTime,
         SigningCredentials =
           new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
       };

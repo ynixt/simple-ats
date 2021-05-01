@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SimpleAts.Rest.Dtos;
 using SimpleAts.Services;
+using System;
+using System.Net.Http.Headers;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace SimpleAts.Controllers
@@ -18,16 +21,28 @@ namespace SimpleAts.Controllers
 
     [HttpPost]
     [Route("login")]
-    public async Task<ActionResult<dynamic>> Login([FromBody] UserLoginRequestDto dto)
+    public async Task<ActionResult<UserLoginResponseDto>> Login()
     {
-      var user = await authService.Login(dto.Email, dto.Password);
-
-      if (user == null)
+      try
       {
-        return Unauthorized();
+        var authHeader = AuthenticationHeaderValue.Parse(Request.Headers["Authorization"]);
+        var credentialBytes = Convert.FromBase64String(authHeader.Parameter);
+        var credentials = Encoding.UTF8.GetString(credentialBytes).Split(new[] {':'}, 2);
+        var email = credentials[0];
+        var password = credentials[1];
+
+        var user = await authService.Login(email, password);
+
+        if (user != null)
+        {
+          return user;
+        }
+      }
+      catch
+      {
       }
 
-      return user;
+      return Unauthorized();
     }
   }
 }

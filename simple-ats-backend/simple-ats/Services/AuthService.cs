@@ -23,7 +23,7 @@ namespace SimpleAts.Services
       if (user != null && PasswordUtil.Verify(password, user.Password))
       {
         var token = tokenService.GenerateToken(user);
-        return new UserLoginResponseDto(user.Id, token);
+        return new UserLoginResponseDto(token);
       }
 
       return null;

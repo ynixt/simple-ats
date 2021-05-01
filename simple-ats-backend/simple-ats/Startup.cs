@@ -9,8 +9,6 @@ using SimpleAts.Services.Extensions;
 using SimpleAts.Core.Extensions;
 using Microsoft.AspNetCore.Http;
 using SimpleAts.Repositories.Extensions;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 
 namespace SimpleAts
 {
@@ -47,19 +45,14 @@ namespace SimpleAts
 
       app.UseHttpsRedirection();
 
-      app.UseRouting();
       app.UsePathBase(new PathString("/api"));
+      app.UseRouting();
 
 
       app.UseAuthentication();
       app.UseAuthorization();
 
       app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
-
-      JsonConvert.DefaultSettings = () => new JsonSerializerSettings
-      {
-        ContractResolver = new CamelCasePropertyNamesContractResolver()
-      };
     }
   }
 }
