@@ -4,6 +4,7 @@ import { TranslocoService } from '@ngneat/transloco';
 import { PoNotificationService } from '@po-ui/ng-components';
 import { PoPageLogin } from '@po-ui/ng-templates';
 import { Observable, Subscription } from 'rxjs';
+
 import { AuthDispatchers } from 'src/app/store';
 import { AuthState } from 'src/app/store/reducers/auth.reducer';
 import { AuthSelectors } from 'src/app/store/services/selectors';
@@ -16,7 +17,6 @@ import { AuthSelectors } from 'src/app/store/services/selectors';
 export class LoginFormComponent implements OnInit, OnDestroy {
   public state$: Observable<AuthState>;
 
-  private isLoggedSubscription: Subscription;
   private errorSubscription: Subscription;
 
   constructor(
@@ -29,10 +29,6 @@ export class LoginFormComponent implements OnInit, OnDestroy {
   public ngOnInit(): void {
     this.state$ = this.authSelectors.state$;
 
-    this.isLoggedSubscription = this.authSelectors.isLogged$.subscribe(isLogged => {
-      console.log(`Estou logado? ${isLogged} :)`);
-    });
-
     this.errorSubscription = this.authSelectors.error$.subscribe(error => {
       if (error != null) {
         this.showError(error);
@@ -41,9 +37,6 @@ export class LoginFormComponent implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy(): void {
-    if (this.isLoggedSubscription) {
-      this.isLoggedSubscription.unsubscribe();
-    }
     if (this.errorSubscription) {
       this.errorSubscription.unsubscribe();
     }
