@@ -8,15 +8,8 @@ import { AppComponent } from './app.component';
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        PoMenuModule,
-        PoPageModule,
-        PoToolbarModule,
-        RouterTestingModule
-      ],
-      declarations: [
-        AppComponent
-      ],
+      imports: [PoMenuModule, PoPageModule, PoToolbarModule, RouterTestingModule],
+      declarations: [AppComponent],
     }).compileComponents();
   }));
 
@@ -26,5 +19,4 @@ describe('AppComponent', () => {
 
     expect(app).toBeTruthy();
   });
-
 });

@@ -6,7 +6,7 @@ export type AuthState = {
   loading: boolean;
   error?: any;
   user?: User | null;
-}
+};
 
 export const initialState: AuthState = {
   loading: false,

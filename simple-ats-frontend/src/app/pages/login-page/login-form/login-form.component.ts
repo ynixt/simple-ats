@@ -23,7 +23,7 @@ export class LoginFormComponent implements OnInit, OnDestroy {
     private authDispatchers: AuthDispatchers,
     private authSelectors: AuthSelectors,
     private poNotification: PoNotificationService,
-    private translocoService: TranslocoService
+    private translocoService: TranslocoService,
   ) {}
 
   public ngOnInit(): void {

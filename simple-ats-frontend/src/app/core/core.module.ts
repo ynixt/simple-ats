@@ -4,14 +4,8 @@ import { TokenService } from './token.service';
 import { AuthService } from './auth.service';
 
 @NgModule({
-  declarations: [
-  ],
-  imports: [
-    CommonModule,
-  ],
-  providers: [
-    AuthService,
-    TokenService
-  ]
+  declarations: [],
+  imports: [CommonModule],
+  providers: [AuthService, TokenService],
 })
-export class CoreModule { }
+export class CoreModule {}
