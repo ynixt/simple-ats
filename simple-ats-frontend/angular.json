@@ -109,6 +109,11 @@
               "./node_modules/@po-ui/style/css/po-theme-default.min.css",
               "src/styles.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/scss"
+              ]
+            },
             "scripts": []
           }
         },

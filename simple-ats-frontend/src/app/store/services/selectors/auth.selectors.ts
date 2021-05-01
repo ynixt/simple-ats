@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store, createSelector, createFeatureSelector } from '@ngrx/store';
 import { filter, take } from 'rxjs/operators';
-import { User } from 'src/app/core/models';
 import { EntityState } from '../../reducers';
 import { AuthState } from '../../reducers/auth.reducer';
 

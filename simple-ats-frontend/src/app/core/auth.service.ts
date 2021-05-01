@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { LoginResponse, User } from '../core/models';
 import { TokenService } from '../core/token.service';
 import { PermissionDispatchers, AuthDispatchers } from '../store/services/dispatchers';
+import { take } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -28,6 +29,7 @@ export class AuthService {
       .post<LoginResponse>('/api/auth/login', undefined, {
         headers: headers,
       })
+      .pipe(take(1))
       .toPromise();
 
     const token = response.token;
@@ -47,7 +49,7 @@ export class AuthService {
     const token = this.tokenService.getToken();
 
     if (token != null) {
-      this.tokenService.getUserFromToken(token);
+      return this.tokenService.getUserFromToken(token);
     }
 
     return undefined;
