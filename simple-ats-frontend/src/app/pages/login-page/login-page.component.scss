@@ -15,3 +15,17 @@
   top: 0;
   left: 0;
 }
+
+app-header ::ng-deep .custom-toolbar {
+  display: block;
+
+  ::ng-deep .po-toolbar {
+    background-color: unset;
+
+    .po-toolbar-title {
+      color: #fff;
+      font-family: unset;
+      font-weight: 600;
+    }
+  }
+}

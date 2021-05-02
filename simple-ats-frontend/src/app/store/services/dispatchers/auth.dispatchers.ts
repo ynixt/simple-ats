@@ -22,6 +22,6 @@ export class AuthDispatchers {
 
   public logout(): void {
     this.tokenService.deleteToken();
-    this.store.dispatch(AuthActions.authSuccess({ user: undefined }));
+    this.store.dispatch(AuthActions.authSuccess({ user: null }));
   }
 }

@@ -3,6 +3,9 @@
   "loading": "Carregando",
   "genericError": "Um erro aconteceu",
   "sessionExpired": "Sessão expirada",
+  "header": {
+    "logout": "Sair"
+  },
   "login": {
     "title": "Encontrar vagas nunca foi tão fácil",
     "subtitle": "Junte-se a nós para decolar em sua carreira.",

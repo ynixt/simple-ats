@@ -62,7 +62,7 @@ describe('AuthDispatchers', () => {
 
     service.logout();
 
-    expect(store.dispatch).toHaveBeenCalledWith(AuthActions.authSuccess({ user: undefined }));
+    expect(store.dispatch).toHaveBeenCalledWith(AuthActions.authSuccess({ user: null }));
     expect(tokenService.deleteToken).toHaveBeenCalled();
   });
 });
