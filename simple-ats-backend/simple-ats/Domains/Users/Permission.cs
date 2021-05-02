@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace SimpleAts.Domains.Users
 {
+  [Index(nameof(Code), IsUnique = true)]
   public class Permission : DomainWithSimpleId
   {
     [Required] [MaxLength(100)] public string Code { get; set; }

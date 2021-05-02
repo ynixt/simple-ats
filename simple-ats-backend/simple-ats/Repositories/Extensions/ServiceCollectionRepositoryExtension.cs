@@ -9,6 +9,7 @@ namespace SimpleAts.Repositories.Extensions
     {
       services.AddScoped<UserRepository>();
       services.AddScoped<PermissionRepository>();
+      services.AddScoped<JobRepository>();
 
       return services;
     }

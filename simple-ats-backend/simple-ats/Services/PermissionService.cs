@@ -18,5 +18,10 @@ namespace SimpleAts.Services
     {
       return permissionRepository.GetPermissionsCode(userId);
     }
+
+    public Task<bool> UserHasPermission(int userId, string code)
+    {
+      return permissionRepository.UserHasPermission(userId, code);
+    }
   }
 }

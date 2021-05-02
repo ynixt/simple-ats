@@ -1,8 +1,9 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { createServiceFactory, mockProvider, SpectatorService, SpyObject } from '@ngneat/spectator';
 import { BehaviorSubject } from 'rxjs';
 import { AuthDispatchers, PermissionDispatchers } from '../store';
+import { ApiService } from './api.service';
 
 import { AuthService } from './auth.service';
 import { loginResponseMock, userMock } from './models/mock';
@@ -15,7 +16,7 @@ describe('AuthService', () => {
   const createService = createServiceFactory({
     service: AuthService,
     providers: [
-      mockProvider(HttpClient),
+      mockProvider(ApiService),
       mockProvider(TokenService),
       mockProvider(AuthDispatchers),
       mockProvider(PermissionDispatchers),
@@ -33,7 +34,7 @@ describe('AuthService', () => {
   });
 
   it('login', async () => {
-    const httpClient = spectator.inject(HttpClient);
+    const apiService = spectator.inject(ApiService);
     const tokenService = spectator.inject(TokenService);
     const permissionDispatchers = spectator.inject(PermissionDispatchers);
     const router = spectator.inject(Router);
@@ -41,16 +42,15 @@ describe('AuthService', () => {
     const loginResponse = loginResponseMock();
     const user = userMock();
 
-    const postSubject = new BehaviorSubject(loginResponse);
     const email = 'a@a.com';
     const password = '123';
 
-    httpClient.post.and.callFake(() => postSubject.asObservable());
+    apiService.post.and.callFake(async () => loginResponse);
     tokenService.getUserFromToken.and.returnValue(user);
 
     const userReturned = await service.login(email, password);
 
-    expect(httpClient.post).toHaveBeenCalledOnceWith('/api/auth/login', undefined, {
+    expect(apiService.post).toHaveBeenCalledOnceWith('/api/auth/login', undefined, {
       headers: jasmine.any(HttpHeaders),
     });
 

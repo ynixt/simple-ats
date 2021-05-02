@@ -1,17 +1,17 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginResponse, User } from '../core/models';
 import { TokenService } from '../core/token.service';
 import { PermissionDispatchers, AuthDispatchers } from '../store/services/dispatchers';
-import { take } from 'rxjs/operators';
+import { ApiService } from './api.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   constructor(
-    private httpClient: HttpClient,
+    private apiService: ApiService,
     private tokenService: TokenService,
     private authDispatchers: AuthDispatchers,
     private permissionDispatchers: PermissionDispatchers,
@@ -25,12 +25,9 @@ export class AuthService {
       'Authorization': 'Basic ' + btoa(authorization),
     });
 
-    const response = await this.httpClient
-      .post<LoginResponse>('/api/auth/login', undefined, {
-        headers: headers,
-      })
-      .pipe(take(1))
-      .toPromise();
+    const response = await this.apiService.post<LoginResponse, any>('/api/auth/login', undefined, {
+      headers: headers,
+    });
 
     const token = response.token;
 
@@ -43,6 +40,7 @@ export class AuthService {
 
   public logout(): void {
     this.authDispatchers.logout();
+    this.router.navigateByUrl('/login');
   }
 
   public getCurrentUser(): User | undefined {

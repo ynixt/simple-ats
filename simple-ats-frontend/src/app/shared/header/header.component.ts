@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PoToolbarAction, PoToolbarProfile } from '@po-ui/ng-components';
+import { AuthService } from 'src/app/core/auth.service';
 import { User } from 'src/app/core/models';
 import { AuthDispatchers } from 'src/app/store';
 import { AuthSelectors } from 'src/app/store/services/selectors';
@@ -15,12 +16,7 @@ export class HeaderComponent implements OnInit {
   public profile: PoToolbarProfile;
   public profileActions: Array<PoToolbarAction>;
 
-  constructor(
-    private authSelectors: AuthSelectors,
-    private translateService: TranslateService,
-    private authDispatchers: AuthDispatchers,
-    private router: Router,
-  ) {}
+  constructor(private authSelectors: AuthSelectors, private translateService: TranslateService, private authService: AuthService) {}
 
   public ngOnInit(): void {
     this.authSelectors.state$.subscribe(state => {
@@ -52,7 +48,6 @@ export class HeaderComponent implements OnInit {
   }
 
   private logout(): void {
-    this.authDispatchers.logout();
-    this.router.navigateByUrl('/login');
+    this.authService.logout();
   }
 }

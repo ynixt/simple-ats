@@ -10,5 +10,17 @@
     "title": "Encontrar vagas nunca foi tão fácil",
     "subtitle": "Junte-se a nós para decolar em sua carreira.",
     "invalidCredentials": "Email ou senha estão incorretos"
+  },
+  "pages": {
+    "home": "Início",
+    "registerJobVacancy": "Registrar nova vaga"
+  },
+  "jobs": {
+    "newJobVacancy": {
+      "name": "Nome da vaga",
+      "description": "Descrição da vaga",
+      "save": "Cadastrar vaga",
+      "saveSuccessful": "Salvo com sucesso"
+    }
   }
 }

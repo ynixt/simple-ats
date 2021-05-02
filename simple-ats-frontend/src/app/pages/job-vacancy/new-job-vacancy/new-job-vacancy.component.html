@@ -1,0 +1,22 @@
+<app-header></app-header>
+
+<app-menu></app-menu>
+<ng-container *transloco="let t">
+  <po-page-default [p-title]="t('pages.registerJobVacancy')">
+    <form [formGroup]="reactiveForm">
+      <span class="po-sm-12 input">
+        <po-input [p-label]="t('jobs.newJobVacancy.name')" [p-auto-focus]="true" formControlName="name" p-clean> </po-input>
+      </span>
+
+      <span class="po-sm-12 input">
+        <po-rich-text [p-label]="t('jobs.newJobVacancy.description')" formControlName="description"> </po-rich-text>
+      </span>
+
+      <span class="po-sm-12 input">
+        <po-button [p-label]="t('jobs.newJobVacancy.save')" [p-disabled]="reactiveForm.invalid" (p-click)="save()"> </po-button>
+      </span>
+    </form>
+  </po-page-default>
+</ng-container>
+
+<po-loading-overlay *ngIf="showLoading"> </po-loading-overlay>

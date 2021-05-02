@@ -25,9 +25,9 @@ namespace SimpleAtsTest.Controllers
       var mockAuthService = new Mock<IAuthService>();
       mockAuthService.Setup(m => m.Login(login, password)).ReturnsAsync(userResponse);
 
-      AuthController authController = new AuthController(mockAuthService.Object);
+      var authController = new AuthController(mockAuthService.Object);
 
-      authController.ControllerContext = new ControllerContext { HttpContext = httpContext };
+      authController.ControllerContext = new ControllerContext {HttpContext = httpContext};
 
       var userResponseReturned = await authController.Login();
 

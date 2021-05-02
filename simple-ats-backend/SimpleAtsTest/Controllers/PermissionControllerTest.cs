@@ -17,19 +17,19 @@ namespace SimpleAtsTest.Controllers
     public async void Login()
     {
       var permissions = new List<PermissionCodeDto>()
-            {
-                new PermissionCodeDto("test")
-            };
+      {
+        new("test")
+      };
 
-      int id = 199;
+      var id = 199;
 
       var mockPermissionService = new Mock<IPermissionService>();
       mockPermissionService.Setup(m => m.GetPermissionsCode(id)).ReturnsAsync(permissions);
 
       var claims = new List<Claim>()
-            {
-                new Claim(ClaimTypes.NameIdentifier, id.ToString()),
-            };
+      {
+        new(ClaimTypes.NameIdentifier, id.ToString())
+      };
 
       var identity = new ClaimsIdentity(claims, "TestAuthType");
       var claimsPrincipal = new ClaimsPrincipal(identity);
@@ -45,7 +45,7 @@ namespace SimpleAtsTest.Controllers
 
       var permissionController = new PermissionController(mockPermissionService.Object);
 
-      permissionController.ControllerContext = new ControllerContext { HttpContext = mockHttpContext.Object };
+      permissionController.ControllerContext = new ControllerContext {HttpContext = mockHttpContext.Object};
 
       var permissionsReturned = await permissionController.Get();
 

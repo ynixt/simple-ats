@@ -10,6 +10,7 @@ namespace SimpleAts.Services.Extensions
       services.AddSingleton<ITokenService, TokenService>();
       services.AddScoped<IAuthService, AuthService>();
       services.AddScoped<IPermissionService, PermissionService>();
+      services.AddScoped<IJobService, JobService>();
 
       return services;
     }

@@ -1,8 +1,9 @@
-import { HttpClient } from '@angular/common/http';
-import { createServiceFactory, mockProvider, SpectatorService, SpyObject } from '@ngneat/spectator';
+import { createServiceFactory, mockProvider, SpectatorService } from '@ngneat/spectator';
 import { BehaviorSubject } from 'rxjs';
+import { ApiService } from './api.service';
 
 import { PermissionsService } from './permissions.service';
+import { TokenService } from './token.service';
 
 describe('PermissionsService', () => {
   let service: PermissionsService;
@@ -10,7 +11,7 @@ describe('PermissionsService', () => {
 
   const createService = createServiceFactory({
     service: PermissionsService,
-    providers: [mockProvider(HttpClient)],
+    providers: [mockProvider(ApiService), mockProvider(TokenService)],
   });
 
   beforeEach(() => {
@@ -23,13 +24,16 @@ describe('PermissionsService', () => {
   });
 
   it('getPermissions', () => {
-    const httpClient = spectator.inject(HttpClient);
+    const apiService = spectator.inject(ApiService);
+    const tokenService = spectator.inject(TokenService);
+
     const subject = new BehaviorSubject(null);
 
-    httpClient.get.andReturn(subject.asObservable());
+    apiService.get.andReturn(subject.asObservable());
+    tokenService.tokenIsSaved.andReturn(true);
 
     service.getPermissions();
 
-    expect(httpClient.get).toHaveBeenCalledOnceWith('/api/permission');
+    expect(apiService.get).toHaveBeenCalledOnceWith('/api/permission');
   });
 });

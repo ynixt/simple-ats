@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using SimpleAts.Domains.Jobs;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace SimpleAts.Domains.Users
 {
@@ -22,5 +24,7 @@ namespace SimpleAts.Domains.Users
     [Required] public Role Role { get; set; }
 
     [Required] public int RoleId { get; set; }
+
+    public List<JobVacancy> VacanciesApplied { get; set; }
   }
 }

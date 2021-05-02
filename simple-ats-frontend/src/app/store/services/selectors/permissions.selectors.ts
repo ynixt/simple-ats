@@ -9,11 +9,14 @@ const loggedSelector = createFeatureSelector<PermissionState>('permissions');
 
 export const getPermissionsState = createSelector(loggedSelector, (state: PermissionState) => state);
 
+export const getPermissions = createSelector(loggedSelector, (state: PermissionState) => state.permissions);
+
 @Injectable()
 export class PermissionsSelectors {
   constructor(private store: Store<EntityState>) {}
 
   state$ = this.store.select(getPermissionsState);
+  permissions$ = this.store.select(getPermissions);
 
   public nextPermissions(): Promise<Permission[]> {
     return new Promise<Permission[]>(resolve => {

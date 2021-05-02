@@ -14,6 +14,11 @@ const routes: Routes = [
     loadChildren: () => import('./pages/login-page/login-page.module').then(m => m.LoginPageModule),
     canActivate: [AnonymousGuard],
   },
+  {
+    path: 'jobs',
+    loadChildren: () => import('./pages/job-vacancy/job-vacancy.module').then(m => m.JobVacancyModule),
+    canActivate: [PermissionGuard],
+  },
 ];
 
 @NgModule({

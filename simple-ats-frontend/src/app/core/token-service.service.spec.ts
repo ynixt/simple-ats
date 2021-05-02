@@ -50,7 +50,7 @@ describe('TokenService', () => {
 
   describe('getUserFromToken', () => {
     it('when token is null must return undefined', () => {
-      expect(service.getUserFromToken(null)).toBeUndefined();
+      expect(service.getUserFromToken(null)).toBeNull();
     });
 
     it('when token is not null must decode and return user', () => {

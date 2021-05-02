@@ -6,7 +6,7 @@ import { User } from './models';
   providedIn: 'root',
 })
 export class TokenService {
-  public readonly allowedDomains = ['localhost:44352'];
+  public readonly allowedDomains = ['localhost:4200'];
   public readonly disallowedRoutes = [/api\/auth\/login/];
 
   private readonly tokenKey = 'token';
