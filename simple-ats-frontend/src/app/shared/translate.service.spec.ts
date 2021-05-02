@@ -4,7 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 
 import { TranslateService } from './translate.service';
 
-fdescribe('TranslateService', () => {
+describe('TranslateService', () => {
   let service: TranslateService;
   let spectator: SpectatorService<TranslateService>;
 
