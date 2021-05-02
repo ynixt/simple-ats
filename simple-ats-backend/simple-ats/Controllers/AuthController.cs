@@ -14,9 +14,9 @@ namespace SimpleAts.Controllers
   [Authorize]
   public class AuthController : Controller
   {
-    private AuthService authService;
+    private IAuthService authService;
 
-    public AuthController(AuthService authService)
+    public AuthController(IAuthService authService)
     {
       this.authService = authService;
     }

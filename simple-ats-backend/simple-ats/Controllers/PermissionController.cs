@@ -13,9 +13,9 @@ namespace SimpleAts.Controllers
   [Authorize]
   public class PermissionController : Controller
   {
-    private PermissionService permissionService;
+    private IPermissionService permissionService;
 
-    public PermissionController(PermissionService permissionService)
+    public PermissionController(IPermissionService permissionService)
     {
       this.permissionService = permissionService;
     }

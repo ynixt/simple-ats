@@ -8,7 +8,7 @@ using SimpleAts.Domains.Users;
 
 namespace SimpleAts.Services
 {
-  public class TokenService
+  public class TokenService : ITokenService
   {
     private IConfiguration configuration;
 

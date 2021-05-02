@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace SimpleAts.Services
 {
-  public class AuthService
+  public class AuthService : IAuthService
   {
     private UserRepository userRepository;
     private TokenService tokenService;

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace SimpleAts.Services
 {
-  public class PermissionService
+  public class PermissionService : IPermissionService
   {
     private PermissionRepository permissionRepository;
 

@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using SimpleAts.Services;
 
 namespace SimpleAts.Services.Extensions
 {
@@ -8,9 +7,9 @@ namespace SimpleAts.Services.Extensions
   {
     public static IServiceCollection AddServices(this IServiceCollection services, IConfiguration configuration)
     {
-      services.AddSingleton<TokenService>();
-      services.AddScoped<AuthService>();
-      services.AddScoped<PermissionService>();
+      services.AddSingleton<ITokenService, TokenService>();
+      services.AddScoped<IAuthService, AuthService>();
+      services.AddScoped<IPermissionService, PermissionService>();
 
       return services;
     }
