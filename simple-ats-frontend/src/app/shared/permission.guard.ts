@@ -12,11 +12,11 @@ export class PermissionGuard implements CanActivate, CanActivateChild {
 
   private permissionByRoute = new Map<string, string>();
 
-  public async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
+  public async canActivate(route: ActivatedRouteSnapshot): Promise<boolean> {
     const permissions = await this.permissionsSelector.nextPermissions();
 
     if (permissions) {
-      const routeUrl: string = route.url.join('/');
+      const routeUrl: string = route.url.map(segment => segment.path).join('/');
       const necessaryPermission = this.permissionByRoute.get(routeUrl);
 
       if (
@@ -34,8 +34,7 @@ export class PermissionGuard implements CanActivate, CanActivateChild {
 
   public canActivateChild(
     childRoute: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot,
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return this.canActivate(childRoute, state);
+    return this.canActivate(childRoute);
   }
 }

@@ -8,7 +8,7 @@ import { AuthSelectors } from '../store/services/selectors';
 export class AnonymousGuard implements CanActivate, CanActivateChild {
   constructor(private authSelectors: AuthSelectors, private router: Router) {}
 
-  public async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
+  public async canActivate(): Promise<boolean> {
     const isLogged = await this.authSelectors.nextIsLogged();
     const isAnonymous = !isLogged;
 
@@ -19,7 +19,7 @@ export class AnonymousGuard implements CanActivate, CanActivateChild {
     return isAnonymous;
   }
 
-  public canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
-    return this.canActivate(childRoute, state);
+  public canActivateChild(): Promise<boolean> {
+    return this.canActivate();
   }
 }
