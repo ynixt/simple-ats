@@ -8,9 +8,9 @@ namespace SimpleAts.Services
   public class AuthService : IAuthService
   {
     private UserRepository userRepository;
-    private TokenService tokenService;
+    private ITokenService tokenService;
 
-    public AuthService(UserRepository userRepository, TokenService tokenService)
+    public AuthService(UserRepository userRepository, ITokenService tokenService)
     {
       this.userRepository = userRepository;
       this.tokenService = tokenService;

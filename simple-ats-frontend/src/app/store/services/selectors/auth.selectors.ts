@@ -23,7 +23,7 @@ export class AuthSelectors {
   public nextIsLogged(): Promise<boolean> {
     return new Promise<boolean>(resolve => {
       this.state$
-        .pipe(filter(state => state.user || state.error))
+        .pipe(filter(state => state.user !== undefined || state.error))
         .pipe(take(1))
         .subscribe(state => {
           resolve(state.user != null);

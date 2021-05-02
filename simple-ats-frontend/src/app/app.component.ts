@@ -5,7 +5,6 @@ import { PoNotificationService } from '@po-ui/ng-components';
 import { Subscription } from 'rxjs';
 
 import { take } from 'rxjs/operators';
-import { TokenService } from './core/token.service';
 import { AuthDispatchers, PermissionDispatchers } from './store';
 import { PermissionsSelectors } from './store/services/selectors';
 
@@ -21,7 +20,6 @@ export class AppComponent implements OnInit, OnDestroy {
     private permissionDispatchers: PermissionDispatchers,
     private permissionsSelectors: PermissionsSelectors,
     private authDispatchers: AuthDispatchers,
-    private tokenService: TokenService,
     private poNotification: PoNotificationService,
     private translocoService: TranslocoService,
   ) {}
@@ -29,9 +27,7 @@ export class AppComponent implements OnInit, OnDestroy {
   public ngOnInit(): void {
     this.authDispatchers.loginByStorage();
 
-    if (this.tokenService.tokenIsSaved()) {
-      this.permissionDispatchers.getPermissions();
-    }
+    this.permissionDispatchers.getPermissions();
 
     this.permissionsSubscription = this.permissionsSelectors.state$.subscribe(permissionsState => {
       if (permissionsState.error) {

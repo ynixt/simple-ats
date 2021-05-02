@@ -38,7 +38,7 @@ export class TokenService {
       };
     }
 
-    return undefined;
+    return null;
   }
 
   public tokenIsSaved(): boolean {

@@ -18,7 +18,7 @@ export class PermissionsSelectors {
   public nextPermissions(): Promise<Permission[]> {
     return new Promise<Permission[]>(resolve => {
       this.state$
-        .pipe(filter(state => state.permissions || state.error))
+        .pipe(filter(state => state.permissions !== undefined || state.error))
         .pipe(take(1))
         .subscribe(state => {
           resolve(state.permissions);

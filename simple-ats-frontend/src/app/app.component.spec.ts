@@ -19,7 +19,6 @@ describe('AppComponent', () => {
 
   let translocoService: SpyObject<TranslocoService>;
   let authDispatchers: SpyObject<AuthDispatchers>;
-  let tokenService: SpyObject<TokenService>;
   let permissionDispatchers: SpyObject<PermissionDispatchers>;
   let poNotificationService: SpyObject<PoNotificationService>;
 
@@ -33,7 +32,6 @@ describe('AppComponent', () => {
       mockProvider(PermissionsSelectors, { state$: permissionsStateSubject.asObservable() }),
       mockProvider(TranslocoService),
       mockProvider(AuthDispatchers),
-      mockProvider(TokenService),
       mockProvider(PoNotificationService),
     ],
     detectChanges: false,
@@ -45,14 +43,12 @@ describe('AppComponent', () => {
 
     translocoService = spectator.inject(TranslocoService);
     authDispatchers = spectator.inject(AuthDispatchers);
-    tokenService = spectator.inject(TokenService);
     permissionDispatchers = spectator.inject(PermissionDispatchers);
     poNotificationService = spectator.inject(PoNotificationService);
 
     translocoService.translate.and.callFake(key => key);
     translocoService.selectTranslate.and.callFake(key => new BehaviorSubject(key).asObservable());
     authDispatchers.loginByStorage.and.stub();
-    tokenService.tokenIsSaved.andReturn(true);
     permissionDispatchers.getPermissions.and.stub();
     poNotificationService.error.and.stub();
 
@@ -65,7 +61,6 @@ describe('AppComponent', () => {
 
   it('ngOnInit', () => {
     expect(authDispatchers.loginByStorage).toHaveBeenCalled();
-    expect(tokenService.tokenIsSaved).toHaveBeenCalled();
     expect(permissionDispatchers.getPermissions).toHaveBeenCalled();
   });
 
