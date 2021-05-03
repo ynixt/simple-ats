@@ -8,30 +8,30 @@ using Xunit;
 
 namespace SimpleAtsTest.Controllers
 {
-  public class AuthControllerTest
-  {
-    [Fact]
-    public async void Login()
+    public class AuthControllerTest
     {
-      var authorization = "Basic YUBhLmM6MTIz";
-      var token = "fakeToken";
-      var login = "a@a.c";
-      var password = "123";
-      var userResponse = new UserLoginResponseDto(token);
+        [Fact]
+        public async void Login()
+        {
+            var authorization = "Basic YUBhLmM6MTIz";
+            var token = "fakeToken";
+            var login = "a@a.c";
+            var password = "123";
+            var userResponse = new UserLoginResponseDto(token);
 
-      var httpContext = new DefaultHttpContext();
-      httpContext.Request.Headers["Authorization"] = authorization;
+            var httpContext = new DefaultHttpContext();
+            httpContext.Request.Headers["Authorization"] = authorization;
 
-      var mockAuthService = new Mock<IAuthService>();
-      mockAuthService.Setup(m => m.Login(login, password)).ReturnsAsync(userResponse);
+            var mockAuthService = new Mock<IAuthService>();
+            mockAuthService.Setup(m => m.Login(login, password)).ReturnsAsync(userResponse);
 
-      var authController = new AuthController(mockAuthService.Object);
+            var authController = new AuthController(mockAuthService.Object);
 
-      authController.ControllerContext = new ControllerContext {HttpContext = httpContext};
+            authController.ControllerContext = new ControllerContext {HttpContext = httpContext};
 
-      var userResponseReturned = await authController.Login();
+            var userResponseReturned = await authController.Login();
 
-      Assert.Equal(userResponse, userResponseReturned.Value);
+            Assert.Equal(userResponse, userResponseReturned.Value);
+        }
     }
-  }
 }

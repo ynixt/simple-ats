@@ -47,7 +47,7 @@ namespace SimpleAtsTest.Controllers
       }
 
       userId ??= int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
-      return Ok(new CurriculumDto() { Curriculum = await userService.GetCurriculum((int)userId) });
+      return Ok(new CurriculumDto() {Curriculum = await userService.GetCurriculum((int) userId)});
     }
   }
 }
