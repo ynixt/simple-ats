@@ -50,4 +50,16 @@ describe('ApiService', () => {
     expect(response).toEqual(fakeResponse);
     expect(httpClient.get).toHaveBeenCalledWith(url, undefined);
   });
+
+  it('delete', async () => {
+    const fakeResponse = 'asd';
+    const url = '/test';
+
+    httpClient.delete.and.callFake(() => of(fakeResponse));
+
+    const response = await service.delete<string>(url);
+
+    expect(response).toEqual(fakeResponse);
+    expect(httpClient.delete).toHaveBeenCalledWith(url, undefined);
+  });
 });

@@ -55,6 +55,10 @@ describe('MenuComponent', () => {
           label: 'pages.home',
           link: '/',
         },
+        {
+          label: 'pages.listJobVacancy',
+          link: '/jobs',
+        },
       ]);
     }));
 
@@ -73,6 +77,10 @@ describe('MenuComponent', () => {
         {
           label: 'pages.home',
           link: '/',
+        },
+        {
+          label: 'pages.listJobVacancy',
+          link: '/jobs',
         },
         {
           label: 'pages.registerJobVacancy',

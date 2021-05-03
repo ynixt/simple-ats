@@ -31,4 +31,8 @@ export class ApiService {
   public get<TResponse>(url: string, options?: ApiOptions): Promise<TResponse> {
     return this.httpClient.get<TResponse>(url, options).toPromise();
   }
+
+  public delete<TResponse>(url: string, options?: ApiOptions): Promise<TResponse> {
+    return this.httpClient.delete<TResponse>(url, options).toPromise();
+  }
 }

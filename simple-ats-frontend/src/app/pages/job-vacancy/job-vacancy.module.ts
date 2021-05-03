@@ -6,10 +6,15 @@ import { JobVacancyRoutingModule } from './job-vacancy-routing.module';
 import { NewJobVacancyComponent } from './new-job-vacancy/new-job-vacancy.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NewJobVacancyService } from './new-job-vacancy/new-job-vacancy.service';
+import { ListJobVacancyComponent } from './list-job-vacancy/list-job-vacancy.component';
+import { ListJobVacancyService } from './list-job-vacancy/list-job-vacancy.service';
+import { PoPageDynamicSearchModule } from '@po-ui/ng-templates';
+import { ViewJobVacancyComponent } from './view-job-vacancy/view-job-vacancy.component';
+import { ViewJobVacancyService } from './view-job-vacancy/view-job-vacancy.service';
 
 @NgModule({
-  declarations: [NewJobVacancyComponent],
-  imports: [CommonModule, SharedModule, JobVacancyRoutingModule, ReactiveFormsModule],
-  providers: [NewJobVacancyService],
+  declarations: [NewJobVacancyComponent, ListJobVacancyComponent, ViewJobVacancyComponent],
+  imports: [CommonModule, SharedModule, JobVacancyRoutingModule, ReactiveFormsModule, PoPageDynamicSearchModule],
+  providers: [NewJobVacancyService, ListJobVacancyService, ViewJobVacancyService],
 })
 export class JobVacancyModule {}

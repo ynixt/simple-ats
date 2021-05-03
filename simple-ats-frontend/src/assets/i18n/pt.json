@@ -13,6 +13,8 @@
   },
   "pages": {
     "home": "Início",
+    "listJobVacancy": "Vagas",
+    "viewJobVacancy": "Vaga {{name}}",
     "registerJobVacancy": "Registrar nova vaga"
   },
   "jobs": {
@@ -21,6 +23,16 @@
       "description": "Descrição da vaga",
       "save": "Cadastrar vaga",
       "saveSuccessful": "Salvo com sucesso"
+    },
+    "listJobVacancy": {
+      "name": "Vaga",
+      "view": "Ver vaga"
+    },
+    "viewJobVacancy": {
+      "apply": "Candidatar a vaga",
+      "removeApplication": "Remover candidatura",
+      "removeApplicationError": "Não estava candidatado",
+      "alreadyApply": "Já candidatado"
     }
   }
 }

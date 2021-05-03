@@ -1,0 +1,20 @@
+<app-header></app-header>
+
+<app-menu></app-menu>
+<ng-container *transloco="let t">
+  <po-page-default [p-title]="t('pages.viewJobVacancy', { name: jobVacancy?.name })">
+    <div class="row">
+      <div class="col-sm-12" [innerHTML]="jobVacancy?.description"></div>
+    </div>
+
+    <div class="row po-mt-5">
+      <div class="col-12">
+        <po-button *ngIf="canApply" [p-label]="t('jobs.viewJobVacancy.apply')" (p-click)="apply()"> </po-button>
+        <po-button *ngIf="!canApply" [p-label]="t('jobs.viewJobVacancy.removeApplication')" (p-click)="removeApplication()" p-type="danger">
+        </po-button>
+      </div>
+    </div>
+  </po-page-default>
+</ng-container>
+
+<po-loading-overlay *ngIf="showLoading"> </po-loading-overlay>

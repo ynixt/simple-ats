@@ -35,6 +35,10 @@ export class MenuComponent implements OnInit, OnDestroy {
         label: await this.translateService.translate('pages.home'),
         link: '/',
       },
+      {
+        label: await this.translateService.translate('pages.listJobVacancy'),
+        link: '/jobs',
+      },
     ];
 
     if (permissions.find(permission => permission.code === 'register_job_vacancy')) {

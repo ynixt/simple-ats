@@ -1,0 +1,24 @@
+<app-header></app-header>
+
+<app-menu></app-menu>
+<ng-container *transloco="let t">
+  <po-page-dynamic-search
+    [p-title]="t('pages.listJobVacancy')"
+    [p-filters]="filters"
+    (p-quick-search)="onQuickSearch($event)"
+    (p-advanced-search)="onAdvancedSearch($event)"
+    (p-change-disclaimers)="onChangeDisclaimers($event)"
+  >
+    <po-table
+      p-container
+      [p-columns]="columns"
+      [p-items]="page?.items"
+      [p-loading]="loading"
+      [p-actions]="actions"
+      [p-show-more-disabled]="!page?.hasNext"
+      (p-show-more)="showMore()"
+      [p-hide-text-overflow]="true"
+    >
+    </po-table>
+  </po-page-dynamic-search>
+</ng-container>
