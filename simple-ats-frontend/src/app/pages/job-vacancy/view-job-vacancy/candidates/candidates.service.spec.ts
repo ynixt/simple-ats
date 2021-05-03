@@ -1,13 +1,20 @@
-import { TestBed } from '@angular/core/testing';
+import { SpectatorService, createServiceFactory, mockProvider } from '@ngneat/spectator';
+import { ApiService } from 'src/app/core/api.service';
 
 import { CandidatesService } from './candidates.service';
 
 describe('CandidatesService', () => {
   let service: CandidatesService;
+  let spectator: SpectatorService<CandidatesService>;
+
+  const createService = createServiceFactory({
+    service: CandidatesService,
+    providers: [mockProvider(ApiService)],
+  });
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(CandidatesService);
+    spectator = createService();
+    service = spectator.service;
   });
 
   it('should be created', () => {

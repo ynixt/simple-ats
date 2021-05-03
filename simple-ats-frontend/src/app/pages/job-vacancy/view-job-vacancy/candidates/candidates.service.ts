@@ -11,11 +11,11 @@ export class CandidatesService {
   public getCandidates(jobId: number, page: number = 1): Promise<Page<User>> {
     const params: any = {
       pageSize: 3,
-      page
-    }
+      page,
+    };
 
     return this.apiService.get<Page<User>>(`/api/jobs/${jobId}/candidates`, {
-      params
+      params,
     });
   }
 }

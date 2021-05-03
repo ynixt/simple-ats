@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { PoMenuItem } from '@po-ui/ng-components';
 import { UserService } from 'src/app/shared/user.service';
 
 @Component({

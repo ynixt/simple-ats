@@ -53,7 +53,34 @@ describe('MenuComponent', () => {
       expect(component.menuItems).toEqual([
         {
           label: 'pages.home',
+          link: '/home',
+        },
+        {
+          label: 'pages.listJobVacancy',
+          link: '/jobs',
+        },
+      ]);
+    }));
+
+    it('with view_dashboard permission', fakeAsync(() => {
+      const permissions: Permission[] = [
+        {
+          code: 'view_dashboard',
+        },
+      ];
+
+      permissionsSubject.next(permissions);
+
+      tick();
+
+      expect(component.menuItems).toEqual([
+        {
+          label: 'pages.dashboard',
           link: '/',
+        },
+        {
+          label: 'pages.home',
+          link: '/home',
         },
         {
           label: 'pages.listJobVacancy',
@@ -76,7 +103,7 @@ describe('MenuComponent', () => {
       expect(component.menuItems).toEqual([
         {
           label: 'pages.home',
-          link: '/',
+          link: '/home',
         },
         {
           label: 'pages.listJobVacancy',
