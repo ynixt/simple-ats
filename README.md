@@ -12,6 +12,6 @@ MVP simples de um sistema ATS, que respeita os requisitos:
 - dotNet core 5
 - SQL Server
 
-## Como executar
-### Via docker
+## Como executar (docker)
+`docker-compose up --build -d`
 
