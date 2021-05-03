@@ -1,0 +1,61 @@
+version: "3.5"
+
+services:
+  db:
+    image: mcr.microsoft.com/mssql/server
+    container_name: ats-mssql
+    restart: always
+    environment:
+        SA_PASSWORD: "wQ3ihTO3u5"
+        ACCEPT_EULA: "Y"
+    # volumes:
+    #   - db-data:var/opt/mssql
+    ports:
+      - 1433:1433
+    networks:
+      - database
+  api:
+    container_name: ats-api
+    build:
+      context: ./simple-ats-backend
+      dockerfile: ./simple-ats/Dockerfile
+    ports:
+      - 8080:80
+    networks:
+      - api
+      - database
+    depends_on:
+      - db
+  angular:
+    container_name: lei-angular
+    build:
+      context: ./simple-ats-frontend
+      dockerfile: ./Dockerfile
+    volumes:
+      - shared:/shared
+  nginx:
+    container_name: lei-nginx
+    image: nginx:1.19-alpine
+    volumes:
+      - ./nginx/config/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/config/mime.types:/etc/nginx/mime.types
+      - shared:/var/www/leilao
+    ports:
+      - 80:80
+    environment:
+      NGINX_PORT: 80
+    networks:
+      - api
+      - front
+    depends_on:
+      - api
+
+networks:
+  api:
+    internal: true
+  database:
+  front:
+
+volumes:
+  db-data:
+  shared:
