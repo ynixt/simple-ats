@@ -11,6 +11,7 @@ namespace SimpleAts.Services.Extensions
       services.AddScoped<IAuthService, AuthService>();
       services.AddScoped<IPermissionService, PermissionService>();
       services.AddScoped<IJobService, JobService>();
+      services.AddScoped<IUserService, UserService>();
 
       return services;
     }

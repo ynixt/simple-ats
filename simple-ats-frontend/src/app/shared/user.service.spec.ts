@@ -1,14 +1,14 @@
 import { createServiceFactory, mockProvider, SpectatorService } from '@ngneat/spectator';
 import { ApiService } from 'src/app/core/api.service';
 
-import { ViewJobVacancyService } from './view-job-vacancy.service';
+import { UserService } from './user.service';
 
-describe('ViewJobVacancyService', () => {
-  let service: ViewJobVacancyService;
-  let spectator: SpectatorService<ViewJobVacancyService>;
+describe('UserService', () => {
+  let service: UserService;
+  let spectator: SpectatorService<UserService>;
 
   const createService = createServiceFactory({
-    service: ViewJobVacancyService,
+    service: UserService,
     providers: [mockProvider(ApiService)],
   });
 

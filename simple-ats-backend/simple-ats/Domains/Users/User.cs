@@ -27,6 +27,9 @@ namespace SimpleAts.Domains.Users
 
     [Required] public int RoleId { get; set; }
 
+    [StringLength(1000, MinimumLength = 3)]
+    public string Curriculum { get; set; }
+
     public List<JobVacancy> VacanciesApplied { get; set; }
   }
 }

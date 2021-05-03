@@ -1,3 +1,19 @@
 <app-header></app-header>
 
 <app-menu></app-menu>
+
+<ng-container *transloco="let t">
+  <po-page-default [p-title]="t('pages.home')">
+    <form [formGroup]="reactiveForm">
+      <span class="po-sm-12 input">
+        <po-rich-text formControlName="curriculum" [p-height]="400"> </po-rich-text>
+      </span>
+
+      <span class="po-sm-12 input">
+        <po-button [p-label]="t('home.save')" [p-disabled]="reactiveForm.invalid" (p-click)="save()"> </po-button>
+      </span>
+    </form>
+  </po-page-default>
+</ng-container>
+
+<po-loading-overlay *ngIf="showLoading"> </po-loading-overlay>

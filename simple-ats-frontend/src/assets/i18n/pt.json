@@ -12,10 +12,13 @@
     "invalidCredentials": "Email ou senha estão incorretos"
   },
   "pages": {
-    "home": "Início",
+    "home": "Meu currículo",
     "listJobVacancy": "Vagas",
     "viewJobVacancy": "Vaga {{name}}",
     "registerJobVacancy": "Registrar nova vaga"
+  },
+  "home": {
+    "save": "Atualizar currículo"
   },
   "jobs": {
     "newJobVacancy": {
