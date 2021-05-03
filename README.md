@@ -13,9 +13,26 @@ MVP simples de um sistema ATS, que respeita os requisitos:
 - dotNet core 5
 - SQL Server
 
-## Como executar (docker)
+## Como executar
+
+### manual
+
+backend:
+
+1. importar o backend com visual studio
+2. criar uma cópia do appsettings.Development.example.json e salvar como appsettings.Development.json
+3. editar o arquivo appsettings.Development.json para apontar para o seu banco sql server
+4. executar como IIS express
+
+frontend: 
+5. npm i no projeto front-end
+6. npm start
+
+### docker
 
 `docker-compose up --build -d`
+
+ps: as vezes está tendo que rodar o comando duas vezes. Provavelmente é erro simples, mas to com sono.
 
 ## Usuários
 
