@@ -1,9 +1,11 @@
-﻿using SimpleAts.Domains.Jobs;
+﻿using Microsoft.EntityFrameworkCore;
+using SimpleAts.Domains.Jobs;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace SimpleAts.Domains.Users
 {
+  [Index(nameof(Email), IsUnique = true)]
   public class User : DomainWithSimpleId
   {
     [Required]
