@@ -2,6 +2,7 @@
 using SimpleAts.Domains.Jobs;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace SimpleAts.Domains.Users
 {
@@ -21,6 +22,7 @@ namespace SimpleAts.Domains.Users
     [Required]
     [MinLength(56)]
     [MaxLength(76)]
+    [JsonIgnoreAttribute]
     public string Password { get; set; }
 
     [Required] public Role Role { get; set; }

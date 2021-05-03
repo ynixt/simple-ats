@@ -30,16 +30,25 @@ export class MenuComponent implements OnInit, OnDestroy {
   }
 
   private async createMenu(permissions: Permission[]): Promise<void> {
-    const menuItems: PoMenuItem[] = [
+    const menuItems: PoMenuItem[] = [];
+
+    if (permissions.find(permission => permission.code === 'view_dashboard')) {
+      menuItems.push({
+        label: await this.translateService.translate('pages.dashboard'),
+        link: '/',
+      });
+    }
+
+    menuItems.push(
       {
         label: await this.translateService.translate('pages.home'),
-        link: '/',
+        link: '/home',
       },
       {
         label: await this.translateService.translate('pages.listJobVacancy'),
         link: '/jobs',
       },
-    ];
+    );
 
     if (permissions.find(permission => permission.code === 'register_job_vacancy')) {
       menuItems.push({

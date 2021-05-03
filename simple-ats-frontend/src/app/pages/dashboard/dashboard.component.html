@@ -1,0 +1,18 @@
+<app-header></app-header>
+
+<app-menu></app-menu>
+
+<ng-container *transloco="let t">
+  <po-page-default [p-title]="t('pages.dashboard')">
+    <div class="items">
+      <a class="item" [routerLink]="['/jobs']">
+        {{ t('dashboard.qtyVacancy', {qty: 10}) }}
+      </a>
+      <div class="item">
+        {{ t('dashboard.qtyCandidates', {qty: 10}) }}
+      </div>
+    </div>
+  </po-page-default>
+</ng-container>
+
+<po-loading-overlay *ngIf="showLoading"> </po-loading-overlay>

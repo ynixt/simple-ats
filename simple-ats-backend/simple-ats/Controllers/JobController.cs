@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using SimpleAts.Core.Pages;
 using SimpleAts.Domains.Jobs;
+using SimpleAts.Domains.Users;
 using SimpleAts.Services;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -134,6 +135,20 @@ namespace SimpleAts.Controllers
       {
         return BadRequest("jobs.viewJobVacancy.removeApplicationError");
       }
+    }
+
+    [HttpGet]
+    [Route("{id}/candidates")]
+    public async Task<ActionResult<PaginatedList<User>>> GetCandidates(int id, [FromQuery] QPage qPage)
+    {
+      var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+
+      if (await permissionService.UserHasPermission(userId, "view_candidates") == false)
+      {
+        return Unauthorized();
+      }
+
+      return Ok(await jobService.GetCandidates(id, qPage));
     }
   }
 }

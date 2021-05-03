@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Data.SqlClient;
+using SimpleAts.Domains.Users;
 
 namespace SimpleAts.Repositories
 {
@@ -56,6 +57,14 @@ namespace SimpleAts.Repositories
       await context.Database.ExecuteSqlRawAsync(
         "delete from job_vacancy_user where candidates_id = @userId and vacancies_applied_id = @id",
         new SqlParameter("@userId", userId), new SqlParameter("@id", id));
+    }
+
+    public Task<PaginatedList<User>> GetCandidates(int jobId, QPage qPage)
+    {
+      return PaginatedList<User>.CreateAsync(
+        context.JobVacancies.Where(job => job.Id.Equals(jobId)).SelectMany(job => job.Candidates),
+        qPage
+      );
     }
   }
 }

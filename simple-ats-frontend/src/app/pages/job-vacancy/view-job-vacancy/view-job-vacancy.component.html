@@ -3,14 +3,21 @@
 <app-menu></app-menu>
 <ng-container *transloco="let t">
   <po-page-default [p-title]="t('pages.viewJobVacancy', { name: jobVacancy?.name })">
-    <div class="row">
+    <app-candidates [jobId]="jobVacancy.id" *ngIf="hasPermissionToSeeCandidates && this.jobVacancy" [reload]="reloadSubject"></app-candidates>
+
+    <div class='po-mb-2' [class.po-mt-5]="hasPermissionToSeeCandidates">
+      <h3>{{t('jobs.viewJobVacancy.resume')}}</h3>
+    </div>
+
+    <div class="row" [class.po-mt-5]="hasPermissionToSeeCandidates">
       <div class="col-sm-12" [innerHTML]="jobVacancy?.description"></div>
     </div>
 
     <div class="row po-mt-5">
-      <div class="col-12">
+      <div>
         <po-button *ngIf="canApply" [p-label]="t('jobs.viewJobVacancy.apply')" (p-click)="apply()"> </po-button>
-        <po-button *ngIf="!canApply" [p-label]="t('jobs.viewJobVacancy.removeApplication')" (p-click)="removeApplication()" p-type="danger">
+        <po-button *ngIf="!canApply" [p-label]="t('jobs.viewJobVacancy.removeApplication')"
+          (p-click)="removeApplication()" p-type="danger">
         </po-button>
       </div>
     </div>

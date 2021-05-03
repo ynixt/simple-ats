@@ -11,9 +11,10 @@ import { ListJobVacancyService } from './list-job-vacancy/list-job-vacancy.servi
 import { PoPageDynamicSearchModule } from '@po-ui/ng-templates';
 import { ViewJobVacancyComponent } from './view-job-vacancy/view-job-vacancy.component';
 import { ViewJobVacancyService } from './view-job-vacancy/view-job-vacancy.service';
+import { CandidatesComponent } from './view-job-vacancy/candidates/candidates.component';
 
 @NgModule({
-  declarations: [NewJobVacancyComponent, ListJobVacancyComponent, ViewJobVacancyComponent],
+  declarations: [NewJobVacancyComponent, ListJobVacancyComponent, ViewJobVacancyComponent, CandidatesComponent],
   imports: [CommonModule, SharedModule, JobVacancyRoutingModule, ReactiveFormsModule, PoPageDynamicSearchModule],
   providers: [NewJobVacancyService, ListJobVacancyService, ViewJobVacancyService],
 })

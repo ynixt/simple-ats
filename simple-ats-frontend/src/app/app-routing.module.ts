@@ -6,6 +6,11 @@ import { PermissionGuard } from './shared/permission.guard';
 const routes: Routes = [
   {
     path: '',
+    loadChildren: () => import('./pages/dashboard/dashboard.module').then(m => m.DashboardModule),
+    canActivate: [PermissionGuard],
+  },
+  {
+    path: 'home',
     loadChildren: () => import('./pages/home-page/home-page.module').then(m => m.HomePageModule),
     canActivate: [PermissionGuard],
   },
@@ -21,7 +26,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: ''
+    redirectTo: '',
   },
 ];
 

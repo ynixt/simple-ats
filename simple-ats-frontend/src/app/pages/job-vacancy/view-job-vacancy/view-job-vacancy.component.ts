@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 import { AuthService } from 'src/app/core/auth.service';
 import { JobVacancy } from 'src/app/core/models';
-import { AuthSelectors } from 'src/app/store/services/selectors';
+import { PermissionsSelectors } from 'src/app/store/services/selectors';
 import { ViewJobVacancyService } from './view-job-vacancy.service';
 
 @Component({
@@ -15,18 +15,25 @@ export class ViewJobVacancyComponent implements OnInit, OnDestroy {
   public showLoading: boolean;
   public jobVacancy: JobVacancy;
   public canApply: boolean;
+  public hasPermissionToSeeCandidates: boolean;
+  public reloadSubject = new Subject<void>();
 
   private paramsSubscription: Subscription;
+  private paramsPermission: Subscription;
 
   constructor(
     private viewJobVacancyService: ViewJobVacancyService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private authService: AuthService,
+    private permissionsSelector: PermissionsSelectors,
   ) {}
 
   ngOnInit(): void {
     this.dealWithParams();
+
+    this.paramsPermission = this.permissionsSelector.permissions$.subscribe(permissions => {
+      this.hasPermissionToSeeCandidates = permissions.map(permission => permission.code).includes('view_candidates');
+    });
   }
 
   private dealWithParams(): void {
@@ -43,12 +50,16 @@ export class ViewJobVacancyComponent implements OnInit, OnDestroy {
     if (this.paramsSubscription) {
       this.paramsSubscription.unsubscribe();
     }
+    if (this.paramsPermission) {
+      this.paramsPermission.unsubscribe();
+    }
   }
 
   public async apply(): Promise<void> {
     try {
       this.showLoading = true;
       await this.viewJobVacancyService.apply(this.jobVacancy.id);
+      this.reloadSubject.next();
     } finally {
       this.showLoading = false;
     }
@@ -60,6 +71,7 @@ export class ViewJobVacancyComponent implements OnInit, OnDestroy {
     try {
       this.showLoading = true;
       await this.viewJobVacancyService.removeApplication(this.jobVacancy.id);
+      this.reloadSubject.next();
     } finally {
       this.showLoading = false;
     }

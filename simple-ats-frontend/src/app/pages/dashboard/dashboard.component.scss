@@ -1,0 +1,43 @@
+@import 'breakpoints';
+
+.items {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .item ~ .item {
+    margin-top: 20px;
+  }
+
+  @include media-breakpoint-up-md {
+    flex-direction: row;
+    align-items: unset;
+
+    .item ~ .item {
+      margin-top: 0px;
+      margin-left: 20px;
+    }
+  }
+
+  .item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    width: 130px;
+    height: 130px;
+    padding: 5px;
+    border-radius: 50%;
+    border: #8241a4 1px solid;
+    font-family: Roboto-Bold, sans-serif;
+    text-decoration: none;
+    color: #000;
+
+    &:hover {
+      border-color: #fff;
+      background-color: #8241a4;
+      color: #fff;
+      text-decoration: none;
+    }
+  }
+}

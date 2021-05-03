@@ -1,0 +1,26 @@
+<ng-container *transloco="let t">
+
+  <div class='po-mb-2'>
+    <h3>{{t('jobs.viewJobVacancy.candidates')}}</h3>
+  </div>
+
+  <ng-container *ngIf="candidates?.items.length > 0">
+    <po-accordion>
+      <po-accordion-item *ngFor="let candidate of candidates.items" [p-label]="candidate.name">
+        <div [innerHTML]="candidate.curriculum"></div>
+      </po-accordion-item>
+    </po-accordion>
+
+    <div class="po-mt-2 po-row">
+      <po-button class="po-offset-xl-4 po-offset-lg-4 po-offset-md-3 po-lg-4 po-md-6" *ngIf="candidates?.hasNext" (p-click)="nextPage()"
+        p-label="Carregar mais resultados">
+      </po-button>
+    </div>
+  </ng-container>
+
+  <div *ngIf="candidates?.items.length === 0 && !showLoading">
+    Nenhum candidato para essa vaga.
+  </div>
+</ng-container>
+
+<po-loading-overlay *ngIf="showLoading"> </po-loading-overlay>

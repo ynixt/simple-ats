@@ -1,5 +1,6 @@
 ﻿using SimpleAts.Core.Pages;
 using SimpleAts.Domains.Jobs;
+using SimpleAts.Domains.Users;
 using System.Threading.Tasks;
 
 namespace SimpleAts.Services
@@ -17,5 +18,7 @@ namespace SimpleAts.Services
     public Task<bool> Apply(int id, int userId);
 
     public Task<bool> RemoveApplication(int id, int userId);
+
+    public Task<PaginatedList<User>> GetCandidates(int jobId, QPage qPage);
   }
 }

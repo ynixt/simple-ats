@@ -8,9 +8,11 @@ import { PermissionsSelectors } from '../store/services/selectors';
   providedIn: 'root',
 })
 export class PermissionGuard implements CanActivate, CanActivateChild {
-  public constructor(private permissionsSelector: PermissionsSelectors, private router: Router) {}
-
   private permissionByRoute = new Map<string, string>();
+
+  public constructor(private permissionsSelector: PermissionsSelectors, private router: Router) {
+    this.permissionByRoute.set('', 'view_dashboard');
+  }
 
   public async canActivate(route: ActivatedRouteSnapshot): Promise<boolean> {
     const permissions = await this.permissionsSelector.nextPermissions();
@@ -25,11 +27,15 @@ export class PermissionGuard implements CanActivate, CanActivateChild {
       ) {
         return true;
       }
+
+      this.router.navigateByUrl('/home');
+
+      return false;
+    } else {
+      this.router.navigateByUrl('/login');
+
+      return false;
     }
-
-    this.router.navigateByUrl('/login');
-
-    return false;
   }
 
   public canActivateChild(

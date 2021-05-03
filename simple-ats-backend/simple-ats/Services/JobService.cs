@@ -1,5 +1,6 @@
 ﻿using SimpleAts.Core.Pages;
 using SimpleAts.Domains.Jobs;
+using SimpleAts.Domains.Users;
 using SimpleAts.Repositories;
 using System.Threading.Tasks;
 
@@ -60,6 +61,11 @@ namespace SimpleAts.Services
 
       await jobRepository.RemoveApplication(id, userId);
       return true;
+    }
+
+    public Task<PaginatedList<User>> GetCandidates(int jobId, QPage qPage)
+    {
+      return jobRepository.GetCandidates(jobId, qPage);
     }
   }
 }
