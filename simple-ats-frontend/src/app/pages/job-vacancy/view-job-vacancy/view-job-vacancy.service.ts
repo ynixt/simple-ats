@@ -11,7 +11,7 @@ export class ViewJobVacancyService {
 
   public async getById(id: number): Promise<JobVacancy> {
     try {
-      return this.apiService.get<JobVacancy>(`/api/jobs/${id}`);
+      return await this.apiService.get<JobVacancy>(`/api/jobs/${id}`);
     } catch (err) {
       if (err && err instanceof HttpErrorResponse && err.status === 404) {
         return null;
