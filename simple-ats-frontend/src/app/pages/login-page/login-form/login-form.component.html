@@ -4,12 +4,10 @@
       <h1>{{ t('login.title') }}</h1>
 
       <div class="form po-mt-3">
-        <po-page-login p-register-url="/register" [p-hide-remember-user]="true" (p-login-submit)="login($event)"> </po-page-login>
+        <po-page-login [p-hide-remember-user]="true" (p-login-submit)="login($event)"> </po-page-login>
       </div>
 
       <h2>{{ t('login.subtitle') }}</h2>
-
-      <!-- <po-loading-overlay *ngIf="state.loading" [p-text]="t('loading')"></po-loading-overlay> -->
     </div>
   </div>
 </ng-container>
