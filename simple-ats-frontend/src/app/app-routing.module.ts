@@ -19,6 +19,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/job-vacancy/job-vacancy.module').then(m => m.JobVacancyModule),
     canActivate: [PermissionGuard],
   },
+  {
+    path: '**',
+    redirectTo: ''
+  },
 ];
 
 @NgModule({
