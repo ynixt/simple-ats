@@ -25,8 +25,8 @@ backend:
 4. executar como IIS express
 
 frontend: 
-5. npm i no projeto front-end
-6. npm start
+1. npm i no projeto front-end
+2. npm start
 
 ### docker
 
