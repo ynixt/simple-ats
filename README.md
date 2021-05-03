@@ -8,10 +8,17 @@ MVP simples de um sistema ATS, que respeita os requisitos:
 - Contenha um documento explicando como executamos a sua aplicação.
 
 ## Tecnologias principais
+
 - Angular 11
 - dotNet core 5
 - SQL Server
 
 ## Como executar (docker)
+
 `docker-compose up --build -d`
 
+## Usuários
+
+- admin - **email**: admin@teste.com **senha**: 123456
+- recrutador - **email**: recruiter@teste.com **senha**: 123456
+- usuário comum - **email**: - snow@north.com **senha**: 123456
